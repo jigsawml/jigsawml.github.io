@@ -71,6 +71,11 @@
             overflow: hidden;
         }
 
+        .form#gform {
+            display: flex;
+            align-items: center;
+        }
+
         input[type="email"] {
             background-color: #cccccc;
             color: #111111;
@@ -99,40 +104,69 @@
             outline: none;
             float: right;
         }
+
+        .flex-wrapper {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        .grid>* {
+            height: 60px;
+        }
     </style>
-    <script src="assets/js/jquery.min.js"></script>
-    <script type="text/javascript">var submitted = false;</script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        $('#gform').on('submit', function (e) {
-            $('#gform *').fadeOut(2000);
-            $('#gform').prepend('Your submission has been processed...');
+        var submitted = false;
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#gform').on('submit', function (e) {
+                if (!submitted) {
+                    e.preventDefault();
+                    submitted = true;
+                    $('#gform').off('submit').submit();
+                    $('#gform *').fadeOut(2000, function () {
+                        // $('#gform').prepend('Your submission has been processed...');
+                    });
+                }
+            });
         });
     </script>
 </head>
 
 <body>
-    <h1>Future is coming
-        <div class="futuristic"></div>
-        <div class="futuristic"></div>
-        <div class="futuristic"></div>
-    </h1>
-
-    <form name="gform" id="gform" enctype="text/plain"
-        action="https://docs.google.com/forms/d/e/1FAIpQLSe6TJIu7OtGxCjv7GXrWIwLGuMwGzlhrQ9Elyqf9rPi548_2g/formResponse?"
-        target="hidden_iframe" onsubmit="submitted=true;">
-        <input type="submit" value=">>">
-        <input type="email" id="entry.1408276246" name="entry.1408276246" placeholder="your email." required>
-    </form>
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
-    <footer>
-        <div class="row">
-            <div class="col-md-6">
-                <p>&copy; 2023 JigsawML</p>
-                <a style="color: #cccccc" href="#">Terms and Conditions</a>
-                <a style="color: #cccccc" href="#">Privacy Policy</a>
+    <div class="flex-wrapper">
+        <h1>Future is coming
+            <div class="futuristic"></div>
+            <div class="futuristic"></div>
+            <div class="futuristic"></div>
+        </h1>
+        <footer>
+            <div class="grid">
+                <div></div>
+                <div><br/>&copy; 2023 JigsawML</div>
+                <div>
+                    <form name="gform" id="gform" enctype="text/plain"
+                        action="https://docs.google.com/forms/d/e/1FAIpQLSe6TJIu7OtGxCjv7GXrWIwLGuMwGzlhrQ9Elyqf9rPi548_2g/formResponse?"
+                        target="hidden_iframe">
+                        <input type="submit" value=">>">
+                        <input type="email" id="entry.1408276246" name="entry.1408276246" placeholder="your email."
+                            required>
+                    </form>
+                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+                        onload="if(submitted) {}"></iframe>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 </body>
 
 </html>

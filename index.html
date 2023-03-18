@@ -65,8 +65,7 @@
 
         .form {
             position: absolute;
-            bottom: 5%;
-            right: 5%;
+            align-items: center;
             text-align: right;
             overflow: hidden;
         }
@@ -88,7 +87,6 @@
             width: 200px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             outline: none;
-            float: right;
         }
 
         input[type="submit"] {
@@ -102,7 +100,6 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             cursor: pointer;
             outline: none;
-            float: right;
         }
 
         .flex-wrapper {
@@ -110,16 +107,6 @@
             min-height: 100vh;
             flex-direction: column;
             justify-content: space-between;
-        }
-
-        .grid {
-            display: grid;
-            grid-gap: 10px;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        }
-
-        .grid>* {
-            height: 60px;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -150,21 +137,16 @@
             <div class="futuristic"></div>
         </h1>
         <footer>
-            <div class="grid">
-                <div></div>
-                <div><br/>&copy; 2023 JigsawML</div>
-                <div>
-                    <form name="gform" id="gform" enctype="text/plain"
-                        action="https://docs.google.com/forms/d/e/1FAIpQLSe6TJIu7OtGxCjv7GXrWIwLGuMwGzlhrQ9Elyqf9rPi548_2g/formResponse?"
-                        target="hidden_iframe">
-                        <input type="submit" value=">>">
-                        <input type="email" id="entry.1408276246" name="entry.1408276246" placeholder="your email."
-                            required>
-                    </form>
-                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
-                        onload="if(submitted) {}"></iframe>
-                </div>
-            </div>
+            <form name="gform" id="gform" enctype="text/plain"
+                action="https://docs.google.com/forms/d/e/1FAIpQLSe6TJIu7OtGxCjv7GXrWIwLGuMwGzlhrQ9Elyqf9rPi548_2g/formResponse?"
+                target="hidden_iframe">
+                <input type="email" id="entry.1408276246" name="entry.1408276246" placeholder="your email." required>
+                <input type="submit" value=">>">
+            </form>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
+            <br /> <br />
+            &copy; 2023 JigsawML
+            <br /><br /><br /><br />
         </footer>
     </div>
 </body>
